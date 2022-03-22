@@ -56,7 +56,7 @@ table.edit-projekt {
   }
 
   .update-projekt-link {
-    color: #004a83;
+    color: $brand;
     cursor: pointer;
     margin-right: 0.75em !important;
   }
@@ -436,7 +436,7 @@ span.projekt-backlink:before {
     content: "\f044";
     font-weight: normal;
     font-family: 'Font Awesome 5 Free';
-    color: #004a83;
+    color: $brand;
   }
 
   .delete-projekt-notification {
