@@ -1,6 +1,5 @@
 class ProjektQuestionAnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :verify_resident!
 
   skip_authorization_check
   has_orders %w[most_voted newest oldest]
@@ -12,7 +11,7 @@ class ProjektQuestionAnswersController < ApplicationController
   respond_to :html, :js
 
   def create
-    if @projekt.question_phase.active?
+    if @projekt.question_phase.phase_activated?
       question_option = ProjektQuestionOption.find(params[:projekt_question_answer][:projekt_question_option_id])
       @question = question_option.question
 
