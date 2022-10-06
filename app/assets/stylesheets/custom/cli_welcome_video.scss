@@ -6,7 +6,7 @@
   position: relative;
   height: 250px;
   margin-top: -24px;
-  background-image: image-url("lhm.jpg");
+  background-image: image-url("kus.jpg");
   background-position: center;
   background-size: cover;
 
@@ -24,6 +24,7 @@
     position: absolute;
     width: 100%;
     top: 10%;
+    font-size: 2.5rem;
 
     @media screen and (min-width: 40em) {
       top: 30%;
@@ -59,7 +60,7 @@
   .hero-text,
   .hero-cta {
     position: absolute;
-    padding: 1rem;
+    padding: 1rem 2rem;
     margin-left: 1rem;
     font-size: 1.5rem;
     left: initial;
@@ -90,20 +91,25 @@
   }
 
   .hero-cta {
-    background: $brand;
+    background: $white;
     color: $white;
     padding: 0.1rem 2rem;
-    top: 120px;
+    top: 90px;
     cursor: pointer;
     text-decoration: none;
     display: none;
+
+    svg {
+      width: 200px;
+      height: 50px;
+    }
 
     @media screen and (min-width: 40em) {
       display: block;
     }
 
     @media screen and (min-width: 64em) {
-      top: 180px;
+      top: 120px;
     }
   }
 }

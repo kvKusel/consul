@@ -12,7 +12,7 @@ body > header .locale.locale-custom,
   }
 
   .locale-form {
-    margin-top: 0.65rem;
+    margin-top: 0.4rem;
 
     label {
       color: $dark
@@ -335,16 +335,16 @@ span.icon-account {
   #navigation_bar .top-level-item > .flyout-item-name > a,
   #navigation_bar .top-level-item > .flyout-item-name,
   .subnavigation a {
-    line-height: 3rem;
+    line-height: 2.5rem;
     font-weight: normal;
   }
 
   #navigation_bar .top-level-item {
-    height: 3rem;
+    height: 2.5rem;
   }
 
   #navigation_bar .account-admin-items li.nav-element.top-level-item > ul.nav-flyout-block {
-    top: 3rem;
+    top: 2.5rem;
   }
 
   // Styling flyout items

@@ -8,7 +8,7 @@ body.admin ul.tabs,
 body.admin .top-bar,
 body.admin .tabs-title > a[aria-selected='true'],
 .admin-top-bar {
-  background-color: #F4F4F4 !important;
+  background-color: #fff !important;
 }
 
 .help-header {
@@ -68,12 +68,13 @@ body>header, .wrapper>header, .top-bar {
     line-height: 1em;
     text-transform: uppercase;
     font-size: 28px;
-    color: $dark;
+    color: $brand;
     margin-bottom: 1em;
     margin-top: 1em;
 
     span {
       font-weight: 100;
+      color: $dark;
     }
   }
 }

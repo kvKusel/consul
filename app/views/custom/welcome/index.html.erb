@@ -27,7 +27,9 @@
           <div class='hero-text'>
             <%= t('cli.welcome.hero.text') %>
           </div>
-          <%= link_to t('cli.welcome.hero.cta'), "#welcome_block", class: "hero-cta", role: "button" %>
+          <%= link_to "#welcome_block", class: "hero-cta", role: "button" do %>
+            <%= svg_tag("mitmachen") %>
+          <% end %>
         </div>
     </div>
 	</div>
@@ -73,7 +75,7 @@
   <% if @latest_polls.any? %>
     <div class="row">
       <div class="column medium-9 small-centered margin-bottom">
-        <h3 class='title card-title'><%= t('custom.welcome.current_polls') %></h3>
+        <h4 class='title-accent'><%= t('custom.welcome.current_polls') %></h4>
         <%= render partial: "polls/poll_group", locals: { poll_group: @latest_polls } %>
       </div>
     </div>
@@ -88,7 +90,7 @@
   <% if @latest_items.any? %>
     <div class="row">
       <div class="column medium-9 small-centered margin-bottom">
-        <h3 class='title card-title'><%= t('custom.welcome.user_entries') %></h3>
+        <h4 class='title-accent'><%= t('custom.welcome.user_entries') %></h4>
         <%= render "latest_items" %>
       </div>
     </div>
