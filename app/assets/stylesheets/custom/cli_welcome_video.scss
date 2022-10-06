@@ -1,0 +1,109 @@
+.position-relative {
+  position: relative;
+}
+
+.hero-wrapper {
+  position: relative;
+  height: 250px;
+  margin-top: -24px;
+  background-image: image-url("lhm.jpg");
+  background-position: center;
+  background-size: cover;
+
+  @media screen and (min-width: 40em) {
+    background-image: none;
+    height: initial;
+  }
+
+  @media screen and (min-width: 75em) {
+    margin-left: calc(37.5rem - 50vw);
+    margin-right: calc(37.5rem - 50vw);
+  }
+
+  .hero-content {
+    position: absolute;
+    width: 100%;
+    top: 10%;
+
+    @media screen and (min-width: 40em) {
+      top: 30%;
+    }
+
+    @media screen and (min-width: 75em) {
+      margin-left: calc(50vw - 37.5rem);
+      margin-right: calc(50vw - 37.5rem);
+      width: 70%;
+    }
+  }
+
+  video {
+    width: 100%;
+    display: none;
+
+    @media screen and (min-width: 40em) {
+      display: block;
+    }
+
+
+  }
+
+  video::-webkit-media-controls-timeline,
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display,
+  video::-webkit-media-controls-volume-slider,
+  video::-webkit-media-controls-mute-button,
+  video::-webkit-media-controls-fullscreen-button {
+    display: none;
+  }
+
+  .hero-text,
+  .hero-cta {
+    position: absolute;
+    padding: 1rem;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    left: initial;
+
+    @media screen and (min-width: 64em) {
+      font-size: 2.5rem;
+    }
+
+    @media screen and (min-width: 1260px) {
+      left: -0.5em;
+    }
+  }
+
+  .hero-text {
+    background: #ffffff99;
+    color: #1e1e1e;
+    font-weight: bold;
+    margin-right: 55px;
+
+    @media screen and (min-width: 40em) {
+      margin-right: initial;
+    }
+
+    span {
+      display: block;
+      font-weight: normal;
+    }
+  }
+
+  .hero-cta {
+    background: $brand;
+    color: $white;
+    padding: 0.1rem 2rem;
+    top: 120px;
+    cursor: pointer;
+    text-decoration: none;
+    display: none;
+
+    @media screen and (min-width: 40em) {
+      display: block;
+    }
+
+    @media screen and (min-width: 64em) {
+      top: 180px;
+    }
+  }
+}
