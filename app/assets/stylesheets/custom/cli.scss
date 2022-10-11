@@ -52,3 +52,13 @@ h6.title-accent::before {
   width: 30px;
   height: 30px;
 }
+
+// Main menu
+
+.main-menu {
+  .nav-flyout-block .flyout-item-name a:active,
+  .nav-flyout-block .flyout-item a:active {
+    color: $brand !important;
+    outline: none;
+  }
+}
