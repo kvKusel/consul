@@ -25,6 +25,7 @@
   footer {
     position: relative;
     background-color: #afd24a;
+    padding-bottom: 60px;
 
     &::before {
       content: image-url("footer.svg");
@@ -34,7 +35,7 @@
       background-repeat: no-repeat;
       left: 0;
       right: 0;
-      top: -80px;
+      top: -100px;
 
       @media screen and (min-width: 500px) {
         top: -120px;
