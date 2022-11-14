@@ -113,7 +113,7 @@ $color-alert:       #a94442 !default;
 $pdf-primary:       #0300ff !default;
 $pdf-secondary:     #ff9e00 !default;
 
-$outline-focus:     3px solid #ffbf47 !default;
+$outline-focus:     3px solid $brand !default;
 
 $input-height:      $line-height * 2 !default;
 
