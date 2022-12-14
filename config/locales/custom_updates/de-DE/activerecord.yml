@@ -10,6 +10,9 @@ de:
       projekt:
         one: Projekt
         other: Projekte
+      age_restriction:
+        one: Altersbeschränkung
+        other: Altersbeschränkungen
     errors:
       models:
         proposal:
@@ -37,6 +40,8 @@ de:
         on_behalf_of: Diskussion im Namen von jemanden erstellen
       proposal:
         on_behalf_of: Vorschlag im Namen von jemanden erstellen
+      budget:
+        voting_style_distributed: "Mehrere Stimmen"
       budget/investment:
         implementation_performer: Umsetzung des Investitionsvorschlages
         implementation_performers:
@@ -71,3 +76,7 @@ de:
         gender: Geschlecht
         date_of_birth: Geburtsdatum
         document_last_digits: Personalausweis / Passport (4 letzten Ziffern)
+      age_restriction:
+        min_age: Mindestalter
+        max_age: Maximalalter
+        order: Reihenfolge
