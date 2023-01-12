@@ -60,6 +60,11 @@
       @media screen and (min-width: 1800px) {
         top: -390px;
       }
+
+      @media screen and (min-width: 75rem) {
+        left: calc(37.5rem - 50vw);
+        right: calc(37.5rem - 50vw);
+      }
     }
 
     .clikus {
@@ -71,3 +76,12 @@
 
 
 
+.auth-page .footer {
+  footer {
+    &::before {
+      @media screen and (min-width: 75rem) {
+        right: 0;
+      }
+    }
+  }
+}
