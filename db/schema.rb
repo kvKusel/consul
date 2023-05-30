@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_14_081219) do
+ActiveRecord::Schema.define(version: 2023_05_27_121732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -381,7 +381,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.text "implementation_contribution"
     t.string "user_cost_estimate"
     t.string "on_behalf_of"
-    t.integer "qualified_votes_count", default: 0
+    t.integer "qualified_total_ballot_line_weight", default: 0
     t.index ["administrator_id"], name: "index_budget_investments_on_administrator_id"
     t.index ["author_id"], name: "index_budget_investments_on_author_id"
     t.index ["budget_id"], name: "index_budget_investments_on_budget_id"
@@ -482,6 +482,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.boolean "published"
     t.boolean "hide_money", default: false
     t.bigint "projekt_id"
+    t.integer "max_number_of_winners", default: 0
     t.index ["projekt_id"], name: "index_budgets_on_projekt_id"
   end
 
@@ -883,6 +884,32 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
+  create_table "individual_group_values", force: :cascade do |t|
+    t.string "name"
+    t.bigint "individual_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["individual_group_id"], name: "index_individual_group_values_on_individual_group_id"
+  end
+
+  create_table "individual_group_values_projekt_phases", id: false, force: :cascade do |t|
+    t.bigint "individual_group_value_id", null: false
+    t.bigint "projekt_phase_id", null: false
+  end
+
+  create_table "individual_group_values_projekts", id: false, force: :cascade do |t|
+    t.bigint "individual_group_value_id", null: false
+    t.bigint "projekt_id", null: false
+  end
+
+  create_table "individual_groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "kind", default: 0
+    t.boolean "visible", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "legislation_annotations", id: :serial, force: :cascade do |t|
     t.string "quote"
     t.text "ranges"
@@ -1163,6 +1190,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.bigint "deficiency_report_id"
     t.jsonb "shape", default: {}, null: false
     t.boolean "show_admin_shape", default: false
+    t.float "altitude"
     t.index ["deficiency_report_id"], name: "index_map_locations_on_deficiency_report_id"
     t.index ["investment_id"], name: "index_map_locations_on_investment_id"
     t.index ["projekt_id"], name: "index_map_locations_on_projekt_id"
@@ -1367,6 +1395,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.integer "given_order", default: 1
     t.boolean "most_voted", default: false
     t.boolean "open_answer", default: false
+    t.string "more_info_link"
     t.index ["question_id"], name: "index_poll_question_answers_on_question_id"
   end
 
@@ -1626,6 +1655,15 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.index ["projekt_phase_id"], name: "index_projekt_phase_geozones_on_projekt_phase_id"
   end
 
+  create_table "projekt_phase_subscriptions", force: :cascade do |t|
+    t.bigint "projekt_phase_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projekt_phase_id"], name: "index_projekt_phase_subscriptions_on_projekt_phase_id"
+    t.index ["user_id"], name: "index_projekt_phase_subscriptions_on_user_id"
+  end
+
   create_table "projekt_phase_translations", force: :cascade do |t|
     t.bigint "projekt_phase_id", null: false
     t.string "locale", null: false
@@ -1634,6 +1672,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.string "phase_tab_name"
     t.text "new_resource_button_name"
     t.text "resource_form_title"
+    t.text "projekt_selector_hint"
     t.index ["locale"], name: "index_projekt_phase_translations_on_locale"
     t.index ["projekt_phase_id"], name: "index_projekt_phase_translations_on_projekt_phase_id"
   end
@@ -1724,6 +1763,16 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["projekt_id"], name: "index_projekt_settings_on_projekt_id"
+  end
+
+  create_table "projekt_subscriptions", force: :cascade do |t|
+    t.bigint "projekt_id"
+    t.bigint "user_id"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projekt_id"], name: "index_projekt_subscriptions_on_projekt_id"
+    t.index ["user_id"], name: "index_projekt_subscriptions_on_user_id"
   end
 
   create_table "projekt_translations", force: :cascade do |t|
@@ -2121,6 +2170,15 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.index ["hidden_at"], name: "index_topics_on_hidden_at"
   end
 
+  create_table "user_individual_group_values", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "individual_group_value_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["individual_group_value_id"], name: "index_user_individual_group_values_on_individual_group_value_id"
+    t.index ["user_id"], name: "index_user_individual_group_values_on_user_id"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
@@ -2208,6 +2266,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
     t.text "keycloak_id_token", default: ""
     t.bigint "registered_address_id"
     t.string "street_number_extension"
+    t.boolean "reverify", default: true
     t.index ["bam_street_id"], name: "index_users_on_bam_street_id"
     t.index ["city_street_id"], name: "index_users_on_city_street_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -2373,6 +2432,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
+  add_foreign_key "individual_group_values", "individual_groups"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
   add_foreign_key "legislation_processes", "projekts"
   add_foreign_key "legislation_proposals", "legislation_processes"
@@ -2410,9 +2470,13 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
   add_foreign_key "projekt_notifications", "projekts"
   add_foreign_key "projekt_phase_geozones", "geozones"
   add_foreign_key "projekt_phase_geozones", "projekt_phases"
+  add_foreign_key "projekt_phase_subscriptions", "projekt_phases"
+  add_foreign_key "projekt_phase_subscriptions", "users"
   add_foreign_key "projekt_phases", "age_restrictions"
   add_foreign_key "projekt_phases", "projekts"
   add_foreign_key "projekt_settings", "projekts"
+  add_foreign_key "projekt_subscriptions", "projekts"
+  add_foreign_key "projekt_subscriptions", "users"
   add_foreign_key "projekts", "projekts", column: "parent_id"
   add_foreign_key "proposals", "communities"
   add_foreign_key "proposals", "projekts"
@@ -2423,6 +2487,8 @@ ActiveRecord::Schema.define(version: 2023_04_14_081219) do
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "sdg_managers", "users"
   add_foreign_key "site_customization_pages", "projekts"
+  add_foreign_key "user_individual_group_values", "individual_group_values"
+  add_foreign_key "user_individual_group_values", "users"
   add_foreign_key "users", "bam_streets"
   add_foreign_key "users", "city_streets"
   add_foreign_key "users", "geozones"

@@ -36,6 +36,15 @@ namespace :admin do
 
   resources :map_layers, only: [:update, :create, :edit, :new, :destroy]
 
+  # custom individual groups routes
+  resources :individual_groups do
+    resources :individual_group_values, as: :values do
+      get :search_user, on: :member
+      post :add_user, on: :member
+      delete :remove_user, on: :member
+    end
+  end
+
   # custom age restriction routes
   resources :age_restrictions
 
@@ -125,6 +134,7 @@ namespace :admin do
     member do
       patch :publish
       put :calculate_winners
+      put :recalculate_winners # custom
     end
 
     resources :groups, except: [:index, :show], controller: "budget_groups" do
