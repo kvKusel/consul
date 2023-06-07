@@ -34,6 +34,8 @@ class ProjektPhase < ApplicationRecord
   has_many :subscriptions, class_name: "ProjektPhaseSubscription", dependent: :destroy
   has_many :subscribers, through: :subscriptions, source: :user
 
+  default_scope { order(given_order: :asc) }
+
   scope :regular_phases, -> { where.not(type: REGULAR_PROJEKT_PHASES) }
   scope :special_phases, -> { where(type: REGULAR_PROJEKT_PHASES) }
 
@@ -48,6 +50,12 @@ class ProjektPhase < ApplicationRecord
     regular_phases.sort_by(&:default_order).each do |x|
       x.start_date = Time.zone.today if x.start_date.nil?
     end.sort_by(&:start_date)
+  end
+
+  def self.order_phases(ordered_array)
+    ordered_array.each_with_index do |phase_id, order|
+      find(phase_id).update_column(:given_order, (order + 1))
+    end
   end
 
   def selectable_by?(user)
@@ -116,6 +124,14 @@ class ProjektPhase < ApplicationRecord
   end
 
   def hide_projekt_selector?
+    false
+  end
+
+  def resource_count
+    nil
+  end
+
+  def selectable_by_admins_only?
     false
   end
 

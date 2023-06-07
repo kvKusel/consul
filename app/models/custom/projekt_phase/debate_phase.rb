@@ -22,6 +22,18 @@ class ProjektPhase::DebatePhase < ProjektPhase
       .present?
   end
 
+  def resource_count
+    projekt_tree_ids = projekt.all_children_ids.unshift(projekt.id)
+    Debate.where(projekt_id: (Debate.scoped_projekt_ids_for_footer(projekt) & projekt_tree_ids)).count
+  end
+
+  def selectable_by_admins_only?
+    projekt_settings.
+      find_by(projekt_settings: { key: "projekt_feature.debates.only_admins_create_debates" }).
+      value.
+      present?
+  end
+
   private
 
     def phase_specific_permission_problems(user, location)

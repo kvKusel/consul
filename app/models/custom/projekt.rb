@@ -245,7 +245,6 @@ class Projekt < ApplicationRecord
 
       debate_phase.selectable_by?(user)
     elsif controller_name == "processes"
-      # return false if proposals_selectable_by_admins_only? && user.administrator.blank?
       legislation_phase.selectable_by?(user)
     end
   end
