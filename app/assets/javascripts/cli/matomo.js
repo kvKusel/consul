@@ -1,5 +1,25 @@
-$(document).on('turbolinks:load', function() {
-  var matomoExternalScript = document.createElement('script');
-  matomoExternalScript.src = 'https://matomo.land-lieben.de/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=auto&showIntro=1';
-  document.head.appendChild(matomoExternalScript);
-});
+var _paq = window._paq = window._paq || [];
+/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+_paq.push(['trackPageView']);
+_paq.push(['enableLinkTracking']);
+
+(function() {
+  var u="//matomo.land-lieben.de/";
+  var previousPageUrl = null;
+
+  addEventListener('turbolinks:load', function(event) {
+    if (previousPageUrl) {
+      _paq.push(['setReferrerUrl', previousPageUrl]);
+      _paq.push(['setCustomUrl', window.location.href]);
+      _paq.push(['setDocumentTitle', document.title]);
+      _paq.push(['trackPageView']);
+    }
+
+    previousPageUrl = window.location.href;
+  });
+
+  _paq.push(['setTrackerUrl', u+'matomo.php']);
+  _paq.push(['setSiteId', '3']);
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+})();
