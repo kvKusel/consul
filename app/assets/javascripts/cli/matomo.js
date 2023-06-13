@@ -4,7 +4,7 @@ _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
 
 (function() {
-  var u="//matomo.land-lieben.de/";
+  var u="https://matomo.land-lieben.de/";
   var previousPageUrl = null;
 
   addEventListener('turbolinks:load', function(event) {
