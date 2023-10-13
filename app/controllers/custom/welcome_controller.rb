@@ -34,7 +34,6 @@ class WelcomeController < ApplicationController
     end
   end
 
-
   private
 
     def filtered_items(feed)
