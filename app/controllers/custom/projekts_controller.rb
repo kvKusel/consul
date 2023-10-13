@@ -43,6 +43,8 @@ class ProjektsController < ApplicationController
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_comments_order)
     set_comment_flags(@comment_tree.comments)
 
+    @projekts = @projekts.select { |p| p.visible_for?(current_user) }
+
     if @projekts.is_a?(Array)
       @projekts = Kaminari.paginate_array(@projekts).page(params[:page]).per(25)
     else

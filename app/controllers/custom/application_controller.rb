@@ -47,6 +47,7 @@ class ApplicationController < ActionController::Base
     def set_projekts_for_overview_page_navigation
       @projekts_for_overview_page_navigation = Projekt.joins(:projekt_settings)
         .where(projekt_settings: { key: "projekt_feature.general.show_in_overview_page_navigation", value: "active" })
+        .select { |p| p.visible_for?(current_user) }
     end
 
     def set_default_social_media_images
