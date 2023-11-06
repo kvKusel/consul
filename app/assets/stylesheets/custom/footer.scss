@@ -7,11 +7,11 @@
   font-weight: bold;
 
   @media screen and (min-width: 1000px) {
-    margin-top: 330px;
+    margin-top: 330px !important;
   }
 
   @media screen and (min-width: 1800px) {
-    margin-top: 430px;
+    margin-top: 430px !important;
   }
 
   p {
@@ -62,8 +62,8 @@
       }
 
       @media screen and (min-width: 75rem) {
-        left: calc(37.5rem - 50vw);
-        right: calc(37.5rem - 50vw);
+        // left: calc(37.5rem - 50vw);
+        // right: calc(37.5rem - 50vw);
       }
     }
 

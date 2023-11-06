@@ -5,7 +5,7 @@
     max-width: 100%;
 
     @media(max-width: $big-tablet-viewport-start) {
-      padding: 20px;
+      // padding: 20px; cli
     }
 
     .row .column {
@@ -21,5 +21,11 @@
 
   footer .logo a {
     font-family: inherit !important;
+  }
+
+  footer {
+    @media(max-width: $big-tablet-viewport-start) {
+      padding: 20px;
+    }
   }
 }
