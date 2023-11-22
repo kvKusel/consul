@@ -121,3 +121,12 @@ h6.title-accent::before {
     }
   }
 }
+
+// Logo
+.custom-new-design {
+  @media (min-width: 970px) {
+    .top-bar--title a img {
+      max-height: 80px !important;
+    }
+  }
+}
