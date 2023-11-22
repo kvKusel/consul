@@ -111,3 +111,13 @@ h6.title-accent::before {
     }
   }
 }
+
+
+// Menu
+.custom-new-design {
+  @media (max-width: 640px) {
+    .top-bar {
+      flex-wrap: wrap;
+    }
+  }
+}
