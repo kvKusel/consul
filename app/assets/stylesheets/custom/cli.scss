@@ -68,3 +68,46 @@ h6.title-accent::before {
 .auth-form {
   margin-bottom: 20em;
 }
+
+
+// New design fixes
+
+// button colors
+.custom-new-design  {
+  .supports .button {
+    background-color: #e2001a !important;
+    color: #fff !important;
+
+    &:hover {
+      background-color: #c40218 !important;
+      color: #fff !important;
+    }
+  }
+
+  .button.-orange {
+    background: #e2001a !important;
+    color: #fff !important;
+
+    &:hover {
+      background-color: #c40218 !important;
+      color: #fff !important;
+    }
+  }
+
+  .pagination .current {
+    background-color: #e2001a !important;
+  }
+}
+
+// footer
+.custom-new-design  {
+  @media (max-width: 1000px) {
+    .footer {
+      margin-top: 220px !important;
+    }
+
+    .footer footer::before {
+      top: -95px !important;
+    }
+  }
+}
