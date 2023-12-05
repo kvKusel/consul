@@ -490,13 +490,20 @@ td.answers-column  {
 }
 
 .poll-question--nested-question {
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 
   .poll-question-answers {
     margin: 0 !important;
+  }
+  &.-rating-scale {
+    display: flex;
+    justify-content: flex-start;
+
+    .poll-question--nested-question-title {
+      min-width: 250px;
+      max-width: 250px;
+    }
   }
 }
 

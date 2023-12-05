@@ -1,6 +1,6 @@
 // brand_color
-$brand:                                           #C52315 !default;
-$brand-secondary:                                 #002d50 !default;
+$brand:                                           #C52315;
+$brand-secondary:                                 #002d50;
 $secondary:                                       lighten($brand, 70%);
 $accent:                                          lighten($brand, 50%);
 $dark:                                            darken($brand, 10%);
